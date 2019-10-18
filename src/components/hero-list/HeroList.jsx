@@ -14,10 +14,10 @@ import * as Icons from '@material-ui/icons';
 import './HeroList.css';
 
 class HeroList extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
+    this.removeHandler = this.props.removeHandler;
   }
-
   render() {
     return(
       <Paper className="hero-list">
@@ -34,12 +34,13 @@ class HeroList extends React.Component {
             <TableBody>
               {
                 this.props.heroes.map(hero => (
-                  <TableRow>
+                  <TableRow key={hero.id}>
                     <TableCell><Avatar alt={hero.name} src={hero.thumbnail} className="bigAvatar" /></TableCell>
                     <TableCell>{hero.name}</TableCell>
                     <TableCell>{hero.description}</TableCell>
                     <TableCell>
                       <Button variant="contained" color="secondary"
+                        onClick={() => this.removeHandler(hero.id)}
                         startIcon={<Icons.Delete />}>
                           Eliminar
                       </Button>
