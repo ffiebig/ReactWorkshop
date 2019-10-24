@@ -10,7 +10,6 @@ import MARVEL_API_KEY from './secrets';
 
 const App = props => {
 
-
   const [heroes, setHeroes] = useState([]);
 
   useEffect(
@@ -40,7 +39,6 @@ const App = props => {
     setHeroes(heroes.filter(hero => hero.id != heroId));
   }
 
-
   return (
     <div>
       <AppBar color="primary" position="static">
@@ -55,5 +53,4 @@ const App = props => {
     </div>
   );
 }
-
 export default App;

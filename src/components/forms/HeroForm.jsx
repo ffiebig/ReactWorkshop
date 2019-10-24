@@ -73,5 +73,4 @@ const HeroForm = props => {
     </Paper>
   );
 }
-
 export default HeroForm;

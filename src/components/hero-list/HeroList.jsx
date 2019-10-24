@@ -8,7 +8,7 @@ import {
   TableRow, 
   TableCell, 
   TableBody,
-  Button,
+  Button
 } from '@material-ui/core';
 import './HeroList.css';
 
@@ -51,5 +51,4 @@ const HeroList = props => {
       </Paper>
     );
 }
-
 export default HeroList;
