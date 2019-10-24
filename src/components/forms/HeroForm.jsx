@@ -1,85 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, TextField, Paper, Button } from '@material-ui/core';
 
-class HeroForm extends React.Component {
-  constructor(props) {
-    super(props);
+const HeroForm = props => {
 
-    this.state = { id: '', name: '', description: '', thumbnail: '' };
-    this.submitHandler = this.props.submitHandler; 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  const initialHeroState = { id: '', name: '', description: '', thumbnail: '' };
+  const [hero, setHero] = useState(initialHeroState);
+
+  const handleChange = event => {
+    const { name, value } = event.target;
+    setHero({ ...hero, [name]: value });
   }
 
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  handleSubmit(event) {
+  const handleSubmit = event => {
     event.preventDefault();
-
-    let hero = this.state;
     if (!hero.name || !hero.description || !hero.thumbnail) return;
 
-    this.submitHandler(this.state);
-    this.setState({ id: '', name: '', description: '', thumbnail: ''});
+    props.submitHandler(hero);
+    setHero(initialHeroState);
   }
 
-  render(){
-    return (
-      <Paper style={{padding: 20}}>
-        <Typography gutterBottom variant="h5" component="h2">Agrega un Héroe</Typography>
-        <form className="hero-form" onSubmit={this.handleSubmit}>
-          <TextField
-            name="name"
-            label="Nombre"
-            value={this.state.name}
-            fullWidth
-            placeholder="Calcetín con Rombos-man"
-            margin="normal"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            onChange={this.handleChange}
-          />
-          <TextField
-            name="description"
-            label="Descripción"
-            value={this.state.description}
-            multiline
-            fullWidth
-            rows="4"
-            placeholder="Calcetín con Rombos-man (shu-ru-ru-ruru) tiene el poder de ser asombroso!"
-            margin="normal"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            onChange={this.handleChange}
-          />
-          <TextField
-            name="thumbnail"
-            label="URL Avatar"
-            value={this.state.thumbnail}
-            fullWidth
-            placeholder="https://via.placeholder.com/150"
-            margin="normal"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            onChange={this.handleChange}
-          />
-          <Button
-            type="submit"
-            variant="outlined"
-            color="primary"
-          >Guardar</Button>
-        </form>
-      </Paper>
-    );
-  }
+  return (
+    <Paper style={{padding: 20}}>
+      <Typography gutterBottom variant="h5" component="h2">Agrega un Héroe</Typography>
+      <form className="hero-form" onSubmit={handleSubmit}>
+        <TextField
+          name="name"
+          label="Nombre"
+          value={hero.name}
+          fullWidth
+          placeholder="Calcetín con Rombos-man"
+          margin="normal"
+          variant="outlined"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={handleChange}
+        />
+        <TextField
+          name="description"
+          label="Descripción"
+          value={hero.description}
+          multiline
+          fullWidth
+          rows="4"
+          placeholder="Calcetín con Rombos-man (shu-ru-ru-ruru) tiene el poder de ser asombroso!"
+          margin="normal"
+          variant="outlined"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={handleChange}
+        />
+        <TextField
+          name="thumbnail"
+          label="URL Avatar"
+          value={hero.thumbnail}
+          fullWidth
+          placeholder="https://via.placeholder.com/150"
+          margin="normal"
+          variant="outlined"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={handleChange}
+        />
+        <Button
+          type="submit"
+          variant="outlined"
+          color="primary"
+        >Guardar</Button>
+      </form>
+    </Paper>
+  );
 }
 
 export default HeroForm;
