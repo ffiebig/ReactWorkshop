@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
@@ -11,22 +11,25 @@ import MARVEL_API_KEY from './secrets';
 const App = props => {
 
 
-  const [heroes, setHeroes] = useState(
-    [
-      {
-        id: 1,
-        name: 'Iron Man',
-        description: 'Iron man is the ironest of them all.',
-        thumbnail: 'https://www.sideshow.com/storage/product-images/904599/iron-man-mark-lxxxv__silo.png'
-      },
-      {
-        id: 2,
-        name: 'The Incredible Hulk',
-        description: 'He\'s really, really green... and angry.',
-        thumbnail: 'https://images.squarespace-cdn.com/content/v1/51b3dc8ee4b051b96ceb10de/1563045034034-48VDAZ4XLEHAYMHJIK8E/ke17ZwdGBToddI8pDm48kNvT88LknE-K9M4pGNO0Iqd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1USOFn4xF8vTWDNAUBm5ducQhX-V3oVjSmr829Rco4W2Uo49ZdOtO_QXox0_W7i2zEA/image-asset.jpeg?format=2500w'
-      }
-    ]
-  );
+  const [heroes, setHeroes] = useState([]);
+
+  useEffect(
+    ()=> {
+      setHeroes([
+        {
+          id: 1,
+          name: 'Iron Man',
+          description: 'Iron man is the ironest of them all.',
+          thumbnail: 'https://www.sideshow.com/storage/product-images/904599/iron-man-mark-lxxxv__silo.png'
+        },
+        {
+          id: 2,
+          name: 'The Incredible Hulk',
+          description: 'He\'s really, really green... and angry.',
+          thumbnail: 'https://images.squarespace-cdn.com/content/v1/51b3dc8ee4b051b96ceb10de/1563045034034-48VDAZ4XLEHAYMHJIK8E/ke17ZwdGBToddI8pDm48kNvT88LknE-K9M4pGNO0Iqd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1USOFn4xF8vTWDNAUBm5ducQhX-V3oVjSmr829Rco4W2Uo49ZdOtO_QXox0_W7i2zEA/image-asset.jpeg?format=2500w'
+        }
+      ]);
+    }, [])
 
   const addHero = (hero) => {
     hero.id = heroes.length + 1;
