@@ -10,19 +10,14 @@ import {
   TableBody,
   Button
 } from '@material-ui/core';
-import * as Icons from '@material-ui/icons';
 import './HeroList.css';
 
 class HeroList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.removeHandler = this.props.removeHandler;
-  }
+
   render() {
     return(
       <Paper className="hero-list">
-        {this.props.heroes.length > 0 ? (
-          <Table>
+          {/* <Table>
             <TableHead>
               <TableRow>
                 <TableCell>Imagen</TableCell>
@@ -32,29 +27,22 @@ class HeroList extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {
-                this.props.heroes.map(hero => (
-                  <TableRow key={hero.id}>
-                    <TableCell><Avatar alt={hero.name} src={hero.thumbnail} className="bigAvatar" /></TableCell>
-                    <TableCell>{hero.name}</TableCell>
-                    <TableCell>{hero.description}</TableCell>
-                    <TableCell>
-                      <Button variant="contained" color="secondary"
-                        onClick={() => this.removeHandler(hero.id)}
-                        startIcon={<Icons.Delete />}>
-                          Eliminar
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))
-              }
+              <TableRow key={1}>
+                <TableCell><Avatar alt="Continuum" src="https://continuum.cl/assets/images/medusa-00882081.svg" className="bigAvatar" /></TableCell>
+                <TableCell>Continuum</TableCell>
+                <TableCell>Visión, Experiencia y cultura</TableCell>
+                <TableCell>
+                  <Button variant="contained" color="secondary">
+                      Eliminar
+                  </Button>
+                </TableCell>
+              </TableRow>
             </TableBody>
-          </Table>
-        ) : (
+          </Table> */}
+
           <Typography className="empty-hero-list-message" align="center" variant="subtitle1" gutterBottom>
             No hay heroes :(
           </Typography>
-        )}
       </Paper>
     );
   }
