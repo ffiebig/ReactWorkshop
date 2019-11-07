@@ -10,18 +10,12 @@ import {
   TableBody,
   Button
 } from '@material-ui/core';
-import * as Icons from '@material-ui/icons';
 import './HeroList.css';
 
-class HeroList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.removeHandler = this.props.removeHandler;
-  }
-  render() {
+const HeroList = props => {
     return(
       <Paper className="hero-list">
-        {this.props.heroes.length > 0 ? (
+        {props.heroes.length > 0 ? (
           <Table>
             <TableHead>
               <TableRow>
@@ -33,16 +27,15 @@ class HeroList extends React.Component {
             </TableHead>
             <TableBody>
               {
-                this.props.heroes.map(hero => (
+                props.heroes.map(hero => (
                   <TableRow key={hero.id}>
                     <TableCell><Avatar alt={hero.name} src={hero.thumbnail} className="bigAvatar" /></TableCell>
                     <TableCell>{hero.name}</TableCell>
                     <TableCell>{hero.description}</TableCell>
                     <TableCell>
                       <Button variant="contained" color="secondary"
-                        onClick={() => this.removeHandler(hero.id)}
-                        startIcon={<Icons.Delete />}>
-                          Eliminar
+                        onClick={() => props.removeHandler(hero.id)}>
+                            Eliminar
                       </Button>
                     </TableCell>
                   </TableRow>
@@ -57,7 +50,5 @@ class HeroList extends React.Component {
         )}
       </Paper>
     );
-  }
 }
-
 export default HeroList;
